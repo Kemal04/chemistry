@@ -53,11 +53,11 @@ router.post("/login", async (req, res) => {
         })
 })
 
-router.post("/current", validateToken, (req, res) => {
+router.get("/current", validateToken, (req, res) => {
     res.json(req.user);
 })
 
-router.post("/basicinfo/:id", async (req, res) => {
+router.get("/basicinfo/:id", async (req, res) => {
     const id = req.params.id;
     const basicInfo = await User.findByPk(id, {
         attributes: { exclude: ["password"] },

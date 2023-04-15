@@ -22,11 +22,17 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
 
     const { currentUser } = useContext(AuthContext);
-    console.log(currentUser);
 
     const ProtectedRoute = ({ children }) => {
         if (!currentUser) {
             return <Navigate to="/giris-etmek" />;
+        }
+        return children;
+    };
+
+    const LoginRoute = ({ children }) => {
+        if (currentUser.status) {
+            return <Navigate to="/" />;
         }
         return children;
     };
@@ -43,14 +49,12 @@ const App = () => {
                     <Route path='/habarlasmak' index element={<Contact />} />
                 </Route>
 
-                {
-                    !currentUser.status && (
-                        <>
-                            <Route path='/giris-etmek' index element={<Login />} />
-                            <Route path='/hasaba-durmak' index element={<Register />} />
-                        </>
-                    )
-                }
+
+                <Route path='/' element={<LoginRoute><Auth /></LoginRoute>} >
+                    <Route path='/giris-etmek' index element={<Login />} />
+                    <Route path='/hasaba-durmak' index element={<Register />} />
+                </Route>
+
             </Routes>
         </>
     )
@@ -64,6 +68,14 @@ const Layout = () => {
             <Outlet />
 
             <Footer />
+        </>
+    );
+};
+
+const Auth = () => {
+    return (
+        <>
+            <Outlet />
         </>
     );
 };

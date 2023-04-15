@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext';
-import axios from 'axios';
-import Api_Address from '../../../env';
 import { toast } from 'react-toastify'
 
 const Register = () => {
 
-    const { setCurrentUser } = useContext(AuthContext);
+    const { registerUser } = useContext(AuthContext);
+    
+    const navigate = useNavigate()
 
     const [register, setRegister] = useState({
         email: "",
@@ -18,8 +18,6 @@ const Register = () => {
     const handleChange = (e) => {
         setRegister((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
-
-    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,22 +38,8 @@ const Register = () => {
             toast.error("Açar sözi 8-den uly bolmaly!")
         }
         else {
-            await axios.post(`${Api_Address}/api/auth/register`, register).then((res) => {
-                if (res.data.error) {
-                    toast.error(res.data.error)
-                } else {
-                    localStorage.setItem("accessToken", res.data.token)
-                    setCurrentUser({
-                        email: res.data.email,
-                        id: res.data.id,
-                        status: true,
-                        role: res.data.role,
-                    });
-                    toast.success(res.data.success)
-                    navigate("/")
-                    window.location.reload()
-                }
-            })
+            registerUser(register)
+            navigate("/")
         }
     }
 

@@ -1,17 +1,40 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../../context/AuthContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
-    const { login } = useContext(AuthContext);
+    const { loginUser } = useContext(AuthContext);
 
     const navigate = useNavigate()
 
-    const handleLogin = () => {
-        login();
-        navigate('/')
-    };
+    const [login, setLogin] = useState({
+        email: "",
+        password: "",
+    })
+
+    const handleChange = (e) => {
+        setLogin((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!login.email) {
+            toast.error("E-poçta adresi ýok!")
+        }
+        else if (!login.password) {
+            toast.error("Açar sözi ýok!")
+        }
+        else if (login.password.length < 8) {
+            toast.error("Açar sözi 8-den uly bolmaly!")
+        }
+        else {
+            loginUser(login)
+            navigate("/giris-etmek")
+        }
+    }
 
     return (
         <>
@@ -33,15 +56,15 @@ const Login = () => {
                                 <div className='col-xl-6'>
                                     <div className='p-5'>
                                         <div className='h2 mb-5'>Giriş Etmek</div>
-                                        <form>
+                                        <form onSubmit={handleSubmit}>
                                             <div className="mb-4">
-                                                <input type="email" className="form-control rounded-0" placeholder='E-poçta adresi' />
+                                                <input onChange={handleChange} name='email' type="email" className="form-control rounded-0" placeholder='E-poçta adresi' />
                                             </div>
                                             <div className="mb-4">
-                                                <input type="password" className="form-control rounded-0" placeholder='Açar sözi' />
+                                                <input onChange={handleChange} name='password' type="password" className="form-control rounded-0" placeholder='Açar sözi' />
                                             </div>
                                             <div className='d-grid'>
-                                                <div className="btn btn-sm btn-outline-dark rounded-0 px-5 fw-bold" onClick={handleLogin}>Giriş et</div>
+                                                <button type='submit' className="btn btn-sm btn-outline-dark rounded-0 px-5 fw-bold">Giriş et</button>
                                             </div>
                                         </form>
                                     </div>
