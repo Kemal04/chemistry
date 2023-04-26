@@ -19,7 +19,7 @@ import './App.css'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeContext } from './context/ThemeContext';
-import { Admin, AdminUsers } from './pages/admin';
+import { Admin, AdminBlogCreate, AdminLogin, AdminUsers } from './pages/admin';
 import { AdminBlogs } from './pages/admin';
 
 const App = () => {
@@ -27,9 +27,12 @@ const App = () => {
     const { currentUser } = useContext(AuthContext);
     const { darkMode } = useContext(ThemeContext)
 
-    const ProtectedRoute = ({ children }) => {
-        if (!currentUser) {
-            return <Navigate to="/giris-etmek" />;
+    console.log(currentUser);
+
+    const AdminProtectedRoute = ({ children }) => {
+        debugger
+        if (currentUser.role !== "Admin") {
+            return <Navigate to="/admin/giris-etmek" />;
         }
         return children;
     };
@@ -61,12 +64,17 @@ const App = () => {
                     <Route path='/hasaba-durmak' index element={<Register />} />
                 </Route>
 
-                <Route path='/' element={<AdminLayout darkMode={darkMode} />} >
+                <Route path='/' element={<AdminProtectedRoute><AdminLayout darkMode={darkMode} /></AdminProtectedRoute>} >
                     <Route path='/admin' index element={<Admin />} />
 
                     <Route path='/admin/ulanyjylar' index element={<AdminUsers />} />
 
                     <Route path='/admin/maglumatlar' index element={<AdminBlogs />} />
+                    <Route path='/admin/maglumat-gos' index element={<AdminBlogCreate />} />
+                </Route>
+
+                <Route path='/' element={<LoginRoute><Auth /></LoginRoute>} >
+                    <Route path='/admin/giris-etmek' index element={<AdminLogin />} />
                 </Route>
 
             </Routes>
