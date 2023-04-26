@@ -4,7 +4,7 @@ const router = express.Router();
 const { Contact } = require("../models/model");
 
 //User ucin
-router.get("/", isAdmin, async (req, res) => {
+router.get("/", async (req, res) => {
     const page = req.query.page ? parseInt(req.query.page) : 1;
     const limit = 20;
     const offset = (page - 1) * limit;

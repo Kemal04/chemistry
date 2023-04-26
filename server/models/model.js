@@ -37,10 +37,23 @@ const Contact = sequelize.define("contact", {
     comment: { type: DataTypes.TEXT, allowNull: false }
 });
 
+const Blog = sequelize.define("blog", {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: true
+    },
+    title: { type: DataTypes.STRING, allowNull: false },
+    description: { type: DataTypes.STRING, allowNull: false },
+    blog_img: { type: DataTypes.TEXT, allowNull: false }
+});
+
 Admin.findOrCreate({ where: { email: "admin@gmail.com", password: "$2b$10$.2s8SLEln9Dnql5sPuvtfec93qtcKyvMAqDY8zeLg8IcndoHNtXWS", role: "Admin" } })
 
 module.exports = {
     User,
     Admin,
     Contact,
+    Blog,
 };

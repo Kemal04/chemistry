@@ -12,3 +12,52 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.home-bg {
+    background: linear-gradient(rgba(28, 36, 58, 0.7), rgba(28, 36, 58, 0.7)), url('./assets/banners/home.jpg');
+    height: 100vh;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-primary {
+    background-color: #3f96e8 !important;
+}
+
+.home-bg-mini {
+    background: linear-gradient(rgba(28, 36, 58, 0.7), rgba(28, 36, 58, 0.7)), url('./assets/banners/contact.jpg');
+    height: 300px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.about-bg-fixed {
+    background: linear-gradient(rgba(14, 39, 55, .7), rgba(14, 39, 55, .7)), url("./assets/banners/about_us_fixed.jpg");
+    background-attachment: fixed;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+}
+
+.bg-main {
+    background-color: #edf2f9 !important;
+}
+
+.dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.bg-dark-blue {
+    background-color: #292e34!important;
+}
+
+.bg-dark-blue-footer {
+    background-color: #323840!important;
+}

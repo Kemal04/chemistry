@@ -4,13 +4,13 @@ import React, { useContext } from 'react'
 import { Outlet, Navigate, Routes, Route } from 'react-router-dom'
 
 //COMPONENTS
-import { Footer, Navbar, ScrollToTop } from './components';
+import { AdminNavbar, AdminSidebar, Footer, Navbar, ScrollToTop } from './components';
 
 //CONTEXTS
 import { AuthContext } from './context/AuthContext';
 
 //USERINTERFACE
-import { About, Contact, Home, Login, Register } from './pages/userInterface';
+import { About, Blog, BlogRead, Contact, Home, Login, Register } from './pages/userInterface';
 
 //CSS
 import './App.css'
@@ -18,10 +18,14 @@ import './App.css'
 //TOAST
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { ThemeContext } from './context/ThemeContext';
+import { Admin, AdminUsers } from './pages/admin';
+import { AdminBlogs } from './pages/admin';
 
 const App = () => {
 
     const { currentUser } = useContext(AuthContext);
+    const { darkMode } = useContext(ThemeContext)
 
     const ProtectedRoute = ({ children }) => {
         if (!currentUser) {
@@ -47,12 +51,22 @@ const App = () => {
                     <Route path='/' index element={<Home />} />
                     <Route path='/biz-barada' index element={<About />} />
                     <Route path='/habarlasmak' index element={<Contact />} />
-                </Route>
 
+                    <Route path='/maglumatlar' index element={<Blog />} />
+                    <Route path='/maglumat/:id' index element={<BlogRead />} />
+                </Route>
 
                 <Route path='/' element={<LoginRoute><Auth /></LoginRoute>} >
                     <Route path='/giris-etmek' index element={<Login />} />
                     <Route path='/hasaba-durmak' index element={<Register />} />
+                </Route>
+
+                <Route path='/' element={<AdminLayout darkMode={darkMode} />} >
+                    <Route path='/admin' index element={<Admin />} />
+
+                    <Route path='/admin/ulanyjylar' index element={<AdminUsers />} />
+
+                    <Route path='/admin/maglumatlar' index element={<AdminBlogs />} />
                 </Route>
 
             </Routes>
@@ -77,6 +91,26 @@ const Auth = () => {
         <>
             <Outlet />
         </>
+    );
+};
+
+
+const AdminLayout = ({ darkMode }) => {
+    return (
+        <div className={`${darkMode ? "bg-dark" : "bg-main"}`}>
+            <AdminNavbar />
+            <div className="container">
+                <div className="row">
+                    <nav id='sidebarMenu' className="col-xl-2 col-lg-2 col-md-2 d-md-block position-fixed collapse" style={darkMode ? { backgroundColor: "#212529", zIndex: "100" } : { backgroundColor: "#edf2f9", zIndex: "100" }}>
+                        <AdminSidebar />
+                    </nav>
+
+                    <main className="col-xl-9 col-lg-9 col-md-9 ms-sm-auto px-md-4">
+                        <Outlet />
+                    </main>
+                </div>
+            </div >
+        </div >
     );
 };
 

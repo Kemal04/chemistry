@@ -7,14 +7,17 @@ import 'jquery/dist/jquery.min.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter } from 'react-router-dom'
 import { AuthContextProvider } from './context/AuthContext';
+import ThemeContextProvider from './context/ThemeContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <AuthContextProvider>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </AuthContextProvider>
+    <ThemeContextProvider>
+        <AuthContextProvider>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </AuthContextProvider>
+    </ThemeContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
