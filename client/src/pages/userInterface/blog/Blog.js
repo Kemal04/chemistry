@@ -50,20 +50,18 @@ const Blog = () => {
                 <div className='row'>
                     {
                         blogs.slice().sort((a, b) => (a.id < b.id) ? 1 : -1).map((blog, index) => (
-                            <div className='col-xl-6 mb-4' key={index}>
+                            <Link to={`/maglumat/${blog.id}`} className='col-xl-6 mb-4 text-decoration-none text-dark' key={index}>
                                 <div className='card shadow'>
                                     <div className='row'>
                                         <div className='col-xl-5'>
                                             <img src={`${Api_Address}/img/blog/${blog.blog_img}`} alt="" className='img-fluid' />
                                         </div>
                                         <div className='col-xl-7 p-5'>
-                                            <div className='h3'>{blog.title}</div>
-                                            <p className='my-3'>{blog.description}</p>
-                                            <Link to="/" className='h5'>Giňişleýin</Link>
+                                            <div className='h4'>{blog.title}</div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))
                     }
                     <nav className='col-xl-12 d-flex justify-content-center mt-5'>

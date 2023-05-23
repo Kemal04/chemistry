@@ -1,12 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import '../../../App.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faClock, faComment, faEllipsis, faHotel, faPenAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faBook, faClock, faComment, faEllipsis, faPenAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import user_icon from '../../../assets/icons/user.jpg'
 import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts'
 import corner_bg from '../../../assets/banners/corner-1.png'
 import { ThemeContext } from '../../../context/ThemeContext'
+import axios from 'axios'
+import Api_Address from '../../../env'
+import moment from 'moment'
 
 const Admin = () => {
 
@@ -57,18 +60,51 @@ const Admin = () => {
         },
     ];
 
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await axios.get(`${Api_Address}/api/user`).then((res) => {
+                setUsers(res.data.users)
+            })
+        }
+        fetchData()
+    }, [])
+
+    const [blogs, setBlogs] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await axios.get(`${Api_Address}/api/blog`).then((res) => {
+                setBlogs(res.data.blogs)
+            })
+        }
+        fetchData()
+    }, [])
+
+    const [contacts, setContacts] = useState([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await axios.get(`${Api_Address}/api/contact`).then((res) => {
+                setContacts(res.data.contacts)
+            })
+        }
+        fetchData()
+    }, [])
+
     return (
         <>
             <div className={`d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ${darkMode ? "text-white" : ""}`}>
-                <h1 className="h2">Dashboard</h1>
+                <h1 className="h2">Esasy Sahypa</h1>
                 <div className="btn-toolbar mb-2 mb-md-0">
                     <div className="btn-group me-2">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Share</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Export</button>
+                        <button type="button" className="btn btn-sm btn-outline-secondary">Paýlaş</button>
+                        <button type="button" className="btn btn-sm btn-outline-secondary">Çykar</button>
                     </div>
                     <button type="button" className="btn btn-sm btn-outline-secondary dropdown-toggle">
                         <span data-feather="calendar" className="align-text-bottom"></span>
-                        This week
+                        Bu hepde
                     </button>
                 </div>
             </div>
@@ -77,32 +113,32 @@ const Admin = () => {
                 <div className='col-xl-3 col-lg-3 col-md-6 col-12 mb-3'>
                     <div className="row p-3 align-items-center mx-3 rounded-3 shadow text-white" style={{ background: "linear-gradient(to right, #ff512f, #f09819)" }}>
                         <div className="col-lg-8">
-                            <h3 className='mb-3'>50</h3>
+                            <h3 className='mb-3'>{users.length}</h3>
                             <p>Ulanyjylar</p>
                         </div>
                         <div className="col-lg-4 h1">
                             <FontAwesomeIcon icon={faUserCircle} />
                         </div>
-                        <Link to="/" className="border-light border-top pt-2 nav-link text-white pb-0">Maglumatlar <FontAwesomeIcon icon={faArrowRight} /></Link>
+                        <Link to="/admin/ulanyjylar" className="border-light border-top pt-2 nav-link text-white pb-0">Maglumatlar <FontAwesomeIcon icon={faArrowRight} /></Link>
                     </div>
                 </div>
                 <div className='col-xl-3 col-lg-3 col-md-6 col-12 mb-3'>
                     <div className="row p-3 align-items-center mx-3 rounded-3 shadow text-white" style={{ background: "linear-gradient(to right, #0fab01, #15ff00)" }}>
                         <div className="col-lg-8">
-                            <h3 className='mb-3'>50</h3>
-                            <p>Ulanyjylar</p>
+                            <h3 className='mb-3'>{blogs.length}</h3>
+                            <p>Maglumatlar</p>
                         </div>
                         <div className="col-lg-4 h1">
-                            <FontAwesomeIcon icon={faHotel} />
+                            <FontAwesomeIcon icon={faBook} />
                         </div>
-                        <Link to="/" className="border-light border-top pt-2 nav-link text-white pb-0">Maglumatlar <FontAwesomeIcon icon={faArrowRight} /></Link>
+                        <Link to="/admin/maglumatlar" className="border-light border-top pt-2 nav-link text-white pb-0">Maglumatlar <FontAwesomeIcon icon={faArrowRight} /></Link>
                     </div>
                 </div>
                 <div className='col-xl-3 col-lg-3 col-md-6 col-12 mb-3'>
                     <div className="row p-3 align-items-center mx-3 rounded-3 shadow text-white" style={{ background: "linear-gradient(to right, #ff0000, #ff6767)" }}>
                         <div className="col-lg-8">
-                            <h3 className='mb-3'>50</h3>
-                            <p>Ulanyjylar</p>
+                            <h3 className='mb-3'>{contacts.length}</h3>
+                            <p>Teswirler</p>
                         </div>
                         <div className="col-lg-4 h1">
                             <FontAwesomeIcon icon={faComment} />
@@ -129,61 +165,35 @@ const Admin = () => {
                     <div className='card border-0 shadow'>
                         <div className={`card-header p-3 ${darkMode ? "bg-dark-blue-footer text-white" : null}`}>
                             <div className='row align-items-center'>
-                                <div className='col-xl-4 col-lg-4 col-md-12 col-12'>Users</div>
+                                <div className='col-xl-4 col-lg-4 col-md-12 col-12'>Ulanyjylar</div>
                                 <div className='col-xl-8 col-lg-8 col-md-12 col-12'>
                                     <select className={`form-select form-select-sm ${darkMode ? "bg-dark-blue-footer text-white" : null}`}>
-                                        <option>Working Time</option>
-                                        <option>Estimated Time</option>
-                                        <option>Billable Time</option>
+                                        <option>Ulanyjylar</option>
+                                        <option>Täzeler</option>
+                                        <option>Köneler</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div className={`card-body ${darkMode ? "bg-dark-blue text-white" : null}`}>
-                            <div className='row align-items-center my-4'>
-                                <div className='col-xl-6 col-lg-6 col-md-6 col-12 d-flex justify-content-start align-items-center'>
-                                    <img src={user_icon} alt="" className='img-fluid rounded-circle me-3' style={{ width: "40px" }} />
-                                    Kemal Hojayew
-                                </div>
-                                <div className='col-xl-6 col-lg-6 col-md-6 col-12 d-flex justify-content-end align-items-center'>
-                                    <FontAwesomeIcon icon={faClock} className='me-2 text-primary' />
-                                    12 Jun 2023 12:00
-                                </div>
-                            </div>
-                            <div className='row align-items-center my-4'>
-                                <div className='col-xl-6 col-lg-6 col-md-6 col-12 d-flex justify-content-start align-items-center'>
-                                    <img src={user_icon} alt="" className='img-fluid rounded-circle me-3' style={{ width: "40px" }} />
-                                    Kemal Hojayew
-                                </div>
-                                <div className='col-xl-6 col-lg-6 col-md-6 col-12 d-flex justify-content-end align-items-center'>
-                                    <FontAwesomeIcon icon={faClock} className='me-2 text-primary' />
-                                    12 Jun 2023 12:00
-                                </div>
-                            </div>
-                            <div className='row align-items-center my-4'>
-                                <div className='col-xl-6 col-lg-6 col-md-6 col-12 d-flex justify-content-start align-items-center'>
-                                    <img src={user_icon} alt="" className='img-fluid rounded-circle me-3' style={{ width: "40px" }} />
-                                    Kemal Hojayew
-                                </div>
-                                <div className='col-xl-6 d-flex justify-content-end align-items-center'>
-                                    <FontAwesomeIcon icon={faClock} className='me-2 text-primary' />
-                                    12 Jun 2023 12:00
-                                </div>
-                            </div>
-                            <div className='row align-items-center mt-4'>
-                                <div className='col-xl-6 col-lg-6 col-md-6 col-12 d-flex justify-content-start align-items-center'>
-                                    <img src={user_icon} alt="" className='img-fluid rounded-circle me-3' style={{ width: "40px" }} />
-                                    Kemal Hojayew
-                                </div>
-                                <div className='col-xl-6 d-flex justify-content-end align-items-center'>
-                                    <FontAwesomeIcon icon={faClock} className='me-2 text-primary' />
-                                    12 Jun 2023 12:00
-                                </div>
-                            </div>
+                            {
+                                users.slice(0, 4).sort((a, b) => (a.id < b.id) ? 1 : -1).map((user, index) => (
+                                    <div className='row align-items-center my-3' key={index}>
+                                        <div className='col-xl-6 col-lg-6 col-md-6 col-12 d-flex justify-content-start align-items-center'>
+                                            <img src={user_icon} alt="" className='img-fluid rounded-circle me-3' style={{ width: "40px" }} />
+                                            {user.email}
+                                        </div>
+                                        <div className='col-xl-6 col-lg-6 col-md-6 col-12 d-flex justify-content-end align-items-center'>
+                                            <FontAwesomeIcon icon={faClock} className='me-2 text-primary' />
+                                            {moment(user.createdAt).format('DD-MM-YYYY')} ý.
+                                        </div>
+                                    </div>
+                                ))
+                            }
                         </div>
-                        <div className={`card-footer text-center ${darkMode ? "bg-dark-blue-footer" : "bg-white"}`}>
+                        <div className={`card-footer text-center pt-3 pb-4 ${darkMode ? "bg-dark-blue-footer" : "bg-white"}`}>
                             <Link to="/" className={`d-flex align-items-center justify-content-center text-decoration-none ${darkMode ? "text-white" : null}`}>
-                                Show all projects
+                                Hemme Ulanyjylary Görkez
                                 <FontAwesomeIcon icon={faArrowRight} className='ms-2 text-primary' />
                             </Link>
                         </div>

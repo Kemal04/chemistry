@@ -3,9 +3,9 @@ import { ThemeContext } from '../../../context/ThemeContext'
 import axios from 'axios'
 import Api_Address from '../../../env'
 import { Link } from 'react-router-dom'
-import user_icon from '../../../assets/icons/user.jpg'
+import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPencil, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const AdminBlogs = () => {
 
@@ -39,6 +39,20 @@ const AdminBlogs = () => {
         fetchData()
     }, [page])
 
+    const handleDelete = async (id) => {
+        try {
+            const { data } = await axios.delete(`${Api_Address}/api/blog/delete/${id}`)
+            toast.success(data.success)
+            const afterDelete = blogs.filter((blogs) => {
+                return blogs.id !== id
+            })
+            setBlogs(afterDelete)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return (
         <>
             <div className='card border-0 shadow my-5'>
@@ -47,7 +61,7 @@ const AdminBlogs = () => {
                         <div className='col-xl-6 col-lg-6 col-md-6 col-12'>
                             <Link to="/admin/maglumat-gos" className={`h5 d-flex align-items-center text-decoration-none ${darkMode ? "text-white" : "text-dark"}`}>
                                 <div>Maglumatlar ( {blogs.length} )</div>
-                                <FontAwesomeIcon icon={faPlus} className='ms-2'/>
+                                <FontAwesomeIcon icon={faPlus} className='ms-2' />
                             </Link>
                         </div>
                         <div className='col-xl-3 col-lg-3 col-md-3 col-6 d-flex justify-content-end'>
@@ -64,15 +78,34 @@ const AdminBlogs = () => {
                 </div>
                 <div className={`card-body p-3 ${darkMode ? "bg-dark-blue text-white" : ""}`}>
                     <div className='row justify-content-between aling-items-center'>
-                        {
-                            blogs.slice().sort((a, b) => (a.id < b.id) ? 1 : -1).map((user, index) => (
-                                <div key={index} className='col-xl-3 col-lg-4 col-md-6 col-12 text-center mb-4 border-bottom pb-3'>
-                                    <img src={user_icon} alt="" className='img-fluid rounded-circle mb-2' style={{ width: "100px" }} />
-                                    <div className={`${darkMode ? "text-white fw-bold" : "text-primary"}`}>{user.name} Kemal Hojayew</div>
-                                    <div className='small'>{user.email}</div>
-                                </div>
-                            ))
-                        }
+                        <table className='table table-bordered'>
+                            <thead>
+                                <tr className={`${darkMode ? "text-white" : null}`}>
+                                    <th>N</th>
+                                    <th>Suraty</th>
+                                    <th>Ady</th>
+                                    <th>Mazmuny</th>
+                                    <th>Pozmak</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    blogs.slice().sort((a, b) => (a.id < b.id) ? 1 : -1).map((blog, index) => (
+                                        <tr key={index}>
+                                            <td className={`${darkMode ? "text-white" : null}`}>{index + 1}</td>
+                                            <td className={`${darkMode ? "text-white" : null}`}><img src={`${Api_Address}/img/blog/${blog.blog_img}`} alt="" style={{ width: "100px" }} /></td>
+                                            <td className={`${darkMode ? "text-white" : null}`}>{blog.title}</td>
+                                            <td className={`${darkMode ? "text-white" : null}`} dangerouslySetInnerHTML={{ __html: blog.description.substring(0, 70) }}></td>
+                                            <td className='d-flex justify-content-center align-items-center'>
+                                                <button className='btn btn-outline-danger' onClick={() => handleDelete(blog.id)}>
+                                                    <FontAwesomeIcon icon={faTrash} />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

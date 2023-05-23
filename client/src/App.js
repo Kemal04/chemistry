@@ -27,16 +27,6 @@ const App = () => {
     const { currentUser } = useContext(AuthContext);
     const { darkMode } = useContext(ThemeContext)
 
-    console.log(currentUser);
-
-    const AdminProtectedRoute = ({ children }) => {
-        debugger
-        if (currentUser.role !== "Admin") {
-            return <Navigate to="/admin/giris-etmek" />;
-        }
-        return children;
-    };
-
     const LoginRoute = ({ children }) => {
         if (currentUser.status) {
             return <Navigate to="/" />;
@@ -52,29 +42,29 @@ const App = () => {
             <Routes>
                 <Route path='/' element={<Layout />} >
                     <Route path='/' index element={<Home />} />
-                    <Route path='/biz-barada' index element={<About />} />
-                    <Route path='/habarlasmak' index element={<Contact />} />
+                    <Route path='/biz-barada' element={<About />} />
+                    <Route path='/habarlasmak' element={<Contact />} />
 
-                    <Route path='/maglumatlar' index element={<Blog />} />
-                    <Route path='/maglumat/:id' index element={<BlogRead />} />
+                    <Route path='/maglumatlar' element={<Blog />} />
+                    <Route path='/maglumat/:blogId' element={<BlogRead />} />
                 </Route>
 
                 <Route path='/' element={<LoginRoute><Auth /></LoginRoute>} >
-                    <Route path='/giris-etmek' index element={<Login />} />
-                    <Route path='/hasaba-durmak' index element={<Register />} />
+                    <Route path='/giris-etmek' element={<Login />} />
+                    <Route path='/hasaba-durmak' element={<Register />} />
                 </Route>
 
-                <Route path='/' element={<AdminProtectedRoute><AdminLayout darkMode={darkMode} /></AdminProtectedRoute>} >
-                    <Route path='/admin' index element={<Admin />} />
+                <Route path='/' element={<AdminLayout darkMode={darkMode} />} >
+                    <Route path='/admin' element={<Admin />} />
 
-                    <Route path='/admin/ulanyjylar' index element={<AdminUsers />} />
+                    <Route path='/admin/ulanyjylar' element={<AdminUsers />} />
 
-                    <Route path='/admin/maglumatlar' index element={<AdminBlogs />} />
-                    <Route path='/admin/maglumat-gos' index element={<AdminBlogCreate />} />
+                    <Route path='/admin/maglumatlar' element={<AdminBlogs />} />
+                    <Route path='/admin/maglumat-gos' element={<AdminBlogCreate />} />
                 </Route>
 
                 <Route path='/' element={<LoginRoute><Auth /></LoginRoute>} >
-                    <Route path='/admin/giris-etmek' index element={<AdminLogin />} />
+                    <Route path='/admin/giris-etmek' element={<AdminLogin />} />
                 </Route>
 
             </Routes>

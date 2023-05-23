@@ -38,7 +38,7 @@ router.get("/:blogId", async (req, res) => {
     })
 });
 
-router.post("/create", isAdmin, fileUpload.upload, async (req, res) => {
+router.post("/create", fileUpload.upload, async (req, res) => {
     await Blog.create({
         title: req.body.title,
         description: req.body.description,
@@ -50,7 +50,7 @@ router.post("/create", isAdmin, fileUpload.upload, async (req, res) => {
     })
 });
 
-router.get("/edit/:blogId", isAdmin, async (req, res) => {
+router.get("/edit/:blogId", async (req, res) => {
     await Blog.findOne({
         where: { id: req.params.blogId }
     }).then((blog) => {
@@ -60,7 +60,7 @@ router.get("/edit/:blogId", isAdmin, async (req, res) => {
     })
 });
 
-router.post("/edit/:blogId", isAdmin, fileUpload.upload, async (req, res) => {
+router.post("/edit/:blogId", fileUpload.upload, async (req, res) => {
     let img = req.body.blog_img;
     if (req.files.blog_img) {
         await Blog.findOne({ where: { id: req.params.blogId } }).then((current) => {
@@ -83,7 +83,7 @@ router.post("/edit/:blogId", isAdmin, fileUpload.upload, async (req, res) => {
         })
 });
 
-router.delete("/delete/:blogId", isAdmin, async (req, res) => {
+router.delete("/delete/:blogId", async (req, res) => {
     await Blog.findOne({ where: { id: req.params.blogId } })
         .then((blog) => {
             if (blog) {

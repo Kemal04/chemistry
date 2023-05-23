@@ -30,7 +30,7 @@ const Sidebar = () => {
                             Maglumatlar
                         </NavLink>
                     </li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <NavLink to="/admin" className={`nav-link d-flex align-items-center ${darkMode ? "text-white" : "text-dark"}`}>
                             <FontAwesomeIcon icon={faBed} className="align-text-bottom me-2" />
                             Products
@@ -47,10 +47,10 @@ const Sidebar = () => {
                             <FontAwesomeIcon icon={faCogs} className="align-text-bottom me-2" />
                             Settings
                         </NavLink>
-                    </li>
+                    </li> */}
                 </ul>
 
-                <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
+                {/* <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
                     <span>Saved reports</span>
                     <NavLink to="/" className="link-secondary" aria-label="Add NavLink new report">
                         <span data-feather="plus-circle" className="align-text-bottom"></span>
@@ -81,7 +81,7 @@ const Sidebar = () => {
                             Year-end sale
                         </NavLink>
                     </li>
-                </ul>
+                </ul> */}
             </div>
         </div>
     )

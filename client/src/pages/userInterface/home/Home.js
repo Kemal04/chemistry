@@ -8,6 +8,7 @@ import contact_bg from '../../../assets/banners/contact.jpg'
 import Api_Address from '../../../env'
 import { toast } from 'react-toastify'
 import axios from "axios"
+import { useEffect } from 'react'
 
 const Home = () => {
 
@@ -56,6 +57,34 @@ const Home = () => {
                 });
         }
     }
+
+    const [blogs, setBlogs] = useState([])
+
+    const [page, setPage] = useState(1)
+
+    const [pages, setPages] = useState()
+
+    const changePage = ({ selected }) => {
+        console.log(selected);
+        setPage((selected + 1))
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await axios.get(`${Api_Address}/api/blog`, {
+                headers: {
+                    accessToken: localStorage.getItem("accessToken"),
+                },
+                params: {
+                    page: page
+                }
+            }).then((res) => {
+                setBlogs(res.data.blogs)
+                setPages(res.data.pagination.pages)
+            })
+        }
+        fetchData()
+    }, [page])
 
     return (
         <>
@@ -118,62 +147,23 @@ const Home = () => {
 
             <div className='container'>
                 <div className='row'>
-                    <div className='col-xl-6 mb-4'>
-                        <div className='card shadow'>
-                            <div className='row'>
-                                <div className='col-xl-5'>
-                                    <img src={card_1} alt="" className='img-fluid' />
+                    {
+                        blogs.slice(0, 4).sort((a, b) => (a.id < b.id) ? 1 : -1).map((blog, index) => (
+                            <Link to={`/maglumat/${blog.id}`} className='col-xl-6 mb-4 text-decoration-none text-dark' key={index}>
+                                <div className='card shadow'>
+                                    <div className='row'>
+                                        <div className='col-xl-5'>
+                                            <img src={`${Api_Address}/img/blog/${blog.blog_img}`} alt="" className='img-fluid' />
+                                        </div>
+                                        <div className='col-xl-7 p-5'>
+                                            <div className='h3'>{blog.title}</div>
+                                            <p className='my-3' dangerouslySetInnerHTML={{ __html: blog.description.substring(0, 70) + "..." }}></p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className='col-xl-7 p-5'>
-                                    <div className='h3'>Hospitalists</div>
-                                    <p className='my-3'>Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-                                    <Link to="/" className='h5'>Giňişleýin</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col-xl-6 mb-4'>
-                        <div className='card shadow'>
-                            <div className='row'>
-                                <div className='col-xl-5'>
-                                    <img src={card_1} alt="" className='img-fluid' />
-                                </div>
-                                <div className='col-xl-7 p-5'>
-                                    <div className='h3'>Hospitalists</div>
-                                    <p className='my-3'>Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-                                    <Link to="/" className='h5'>Learn More</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col-xl-6 mb-4'>
-                        <div className='card shadow'>
-                            <div className='row'>
-                                <div className='col-xl-5'>
-                                    <img src={card_1} alt="" className='img-fluid' />
-                                </div>
-                                <div className='col-xl-7 p-5'>
-                                    <div className='h3'>Hospitalists</div>
-                                    <p className='my-3'>Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-                                    <Link to="/" className='h5'>Learn More</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='col-xl-6 mb-4'>
-                        <div className='card shadow'>
-                            <div className='row'>
-                                <div className='col-xl-5'>
-                                    <img src={card_1} alt="" className='img-fluid' />
-                                </div>
-                                <div className='col-xl-7 p-5'>
-                                    <div className='h3'>Hospitalists</div>
-                                    <p className='my-3'>Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-                                    <Link to="/" className='h5'>Learn More</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            </Link>
+                        ))
+                    }
                 </div>
             </div>
 

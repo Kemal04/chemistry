@@ -75,6 +75,8 @@ const AdminBlogCreate = () => {
                                 <div className="col-xl-12 col-lg-12 col-md-12 col-12 mb-5">
                                     <label className="form-label fw-bold">Mazmuny</label>
                                     <CKEditor
+                                        type='text'
+                                        name="description"
                                         editor={ClassicEditor}
                                         data=""
                                         onChange={(event, editor) => {

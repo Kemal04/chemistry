@@ -4,6 +4,7 @@ import React from 'react'
 import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { ThemeContext } from '../../context/ThemeContext'
+import { AuthContext } from '../../context/AuthContext'
 
 const Navbar = () => {
 
@@ -12,6 +13,13 @@ const Navbar = () => {
     const darkModeClick = () => {
         toggleDarkMode();
     }
+    
+    const { currentUser, setCurrentUser } = useContext(AuthContext)
+
+    const logout = () => {
+        localStorage.removeItem("accessToken");
+        setCurrentUser({ email: "", id: 0, status: false, role: "User" })
+    };
 
     return (
         <>
@@ -36,33 +44,16 @@ const Navbar = () => {
                                     }
                                 </div>
                             </li>
-                            <li className="nav-item mx-2">
-                                <NavLink to="/" className="nav-link position-relative">
-                                    <FontAwesomeIcon icon={faShoppingCart} />
-                                    <span className="position-absolute translate-middle badge rounded-pill bg-danger p-1 px-2" style={{ top: "20%", left: "90%", fontSize: "10px" }}>
-                                        9
-                                        <span className="visually-hidden">unread messages</span>
-                                    </span>
-                                </NavLink>
-                            </li>
-                            <li className="nav-item mx-2">
-                                <NavLink to="/" className="nav-link position-relative">
-                                    <FontAwesomeIcon icon={faBell} />
-                                    <span className="position-absolute translate-middle p-1 bg-primary border border-primary rounded-circle" style={{ top: "30%" }}>
-                                        <span className="visually-hidden">New alerts</span>
-                                    </span>
-                                </NavLink>
-                            </li>
                             <li className="nav-item mx-2 dropdown">
                                 <div className="nav-link position-relative">
                                     <div className="nav-link dropdown-toggle p-0 text-white" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <FontAwesomeIcon icon={faUser} />
                                     </div>
                                     <ul className="dropdown-menu shadow border-0">
-                                        <li><Link to="/" className="dropdown-item">Action</Link></li>
-                                        <li><Link to="/" className="dropdown-item">Another action</Link></li>
+                                        <li><Link to="/" className="dropdown-item">Maglumatlar</Link></li>
+                                        <li><Link to="/" className="dropdown-item">Biz Barada</Link></li>
                                         <li><hr className="dropdown-divider" /></li>
-                                        <li><Link to="/" className="dropdown-item">Something else here</Link></li>
+                                        <li><Link to="/" className="dropdown-item" onClick={logout}>Çykyş etmek</Link></li>
                                     </ul>
                                 </div>
                             </li>
