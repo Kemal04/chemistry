@@ -45,7 +45,7 @@ const Blog = sequelize.define("blog", {
         allowNull: true
     },
     title: { type: DataTypes.STRING, allowNull: false },
-    description: { type: DataTypes.STRING, allowNull: false },
+    description: { type: DataTypes.TEXT, allowNull: false },
     blog_img: { type: DataTypes.TEXT, allowNull: false }
 });
 

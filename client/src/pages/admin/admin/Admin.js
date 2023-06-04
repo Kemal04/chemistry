@@ -17,47 +17,29 @@ const Admin = () => {
 
     const data = [
         {
-            name: 'Page A',
+            name: 'Sahypa A',
             uv: 4000,
             pv: 2400,
             amt: 2400,
         },
         {
-            name: 'Page B',
+            name: 'Sahypa B',
             uv: 3000,
             pv: 1398,
             amt: 2210,
         },
         {
-            name: 'Page C',
+            name: 'Sahypa C',
             uv: 2000,
             pv: 9800,
             amt: 2290,
         },
         {
-            name: 'Page D',
+            name: 'Sahypa D',
             uv: 2780,
             pv: 3908,
             amt: 2000,
-        },
-        {
-            name: 'Page E',
-            uv: 1890,
-            pv: 4800,
-            amt: 2181,
-        },
-        {
-            name: 'Page F',
-            uv: 2390,
-            pv: 3800,
-            amt: 2500,
-        },
-        {
-            name: 'Page G',
-            uv: 3490,
-            pv: 4300,
-            amt: 2100,
-        },
+        }
     ];
 
     const [users, setUsers] = useState([])
@@ -97,20 +79,10 @@ const Admin = () => {
         <>
             <div className={`d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ${darkMode ? "text-white" : ""}`}>
                 <h1 className="h2">Esasy Sahypa</h1>
-                <div className="btn-toolbar mb-2 mb-md-0">
-                    <div className="btn-group me-2">
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Paýlaş</button>
-                        <button type="button" className="btn btn-sm btn-outline-secondary">Çykar</button>
-                    </div>
-                    <button type="button" className="btn btn-sm btn-outline-secondary dropdown-toggle">
-                        <span data-feather="calendar" className="align-text-bottom"></span>
-                        Bu hepde
-                    </button>
-                </div>
             </div>
 
             <div className='row mt-5 g-0'>
-                <div className='col-xl-3 col-lg-3 col-md-6 col-12 mb-3'>
+                <div className='col-xl-4 col-lg-3 col-md-6 col-12 mb-3'>
                     <div className="row p-3 align-items-center mx-3 rounded-3 shadow text-white" style={{ background: "linear-gradient(to right, #ff512f, #f09819)" }}>
                         <div className="col-lg-8">
                             <h3 className='mb-3'>{users.length}</h3>
@@ -122,7 +94,7 @@ const Admin = () => {
                         <Link to="/admin/ulanyjylar" className="border-light border-top pt-2 nav-link text-white pb-0">Maglumatlar <FontAwesomeIcon icon={faArrowRight} /></Link>
                     </div>
                 </div>
-                <div className='col-xl-3 col-lg-3 col-md-6 col-12 mb-3'>
+                <div className='col-xl-4 col-lg-3 col-md-6 col-12 mb-3'>
                     <div className="row p-3 align-items-center mx-3 rounded-3 shadow text-white" style={{ background: "linear-gradient(to right, #0fab01, #15ff00)" }}>
                         <div className="col-lg-8">
                             <h3 className='mb-3'>{blogs.length}</h3>
@@ -134,7 +106,7 @@ const Admin = () => {
                         <Link to="/admin/maglumatlar" className="border-light border-top pt-2 nav-link text-white pb-0">Maglumatlar <FontAwesomeIcon icon={faArrowRight} /></Link>
                     </div>
                 </div>
-                <div className='col-xl-3 col-lg-3 col-md-6 col-12 mb-3'>
+                <div className='col-xl-4 col-lg-3 col-md-6 col-12 mb-3'>
                     <div className="row p-3 align-items-center mx-3 rounded-3 shadow text-white" style={{ background: "linear-gradient(to right, #ff0000, #ff6767)" }}>
                         <div className="col-lg-8">
                             <h3 className='mb-3'>{contacts.length}</h3>
@@ -144,18 +116,6 @@ const Admin = () => {
                             <FontAwesomeIcon icon={faComment} />
                         </div>
                         <Link to="/" className="border-light border-top pt-2 nav-link text-white pb-0">Maglumatlar <FontAwesomeIcon icon={faArrowRight} /></Link>
-                    </div>
-                </div>
-                <div className='col-xl-3 col-lg-3 col-md-6 col-12 mb-3'>
-                    <div className="row p-3 align-items-center mx-3 rounded-3 shadow text-white" style={{ background: "linear-gradient(to right, #1845ad, #23a2f6)" }}>
-                        <div className="col-lg-8">
-                            <h3 className='mb-3'>50</h3>
-                            <p>Ulanyjylar</p>
-                        </div>
-                        <div className="col-lg-4 h1">
-                            <FontAwesomeIcon icon={faPenAlt} />
-                        </div>
-                        <Link to="/" className="border-light border-top pt-2 nav-link text-white">Maglumatlar <FontAwesomeIcon icon={faArrowRight} /></Link>
                     </div>
                 </div>
             </div>
@@ -192,7 +152,7 @@ const Admin = () => {
                             }
                         </div>
                         <div className={`card-footer text-center pt-3 pb-4 ${darkMode ? "bg-dark-blue-footer" : "bg-white"}`}>
-                            <Link to="/" className={`d-flex align-items-center justify-content-center text-decoration-none ${darkMode ? "text-white" : null}`}>
+                            <Link to="/admin/ulanyjylar" className={`d-flex align-items-center justify-content-center text-decoration-none ${darkMode ? "text-white" : null}`}>
                                 Hemme Ulanyjylary Görkez
                                 <FontAwesomeIcon icon={faArrowRight} className='ms-2 text-primary' />
                             </Link>
@@ -203,7 +163,7 @@ const Admin = () => {
                     <div className='card border-0 shadow'>
                         <div className={`card-header p-3 ${darkMode ? "bg-dark-blue-footer text-white" : null}`}>
                             <div className='row align-items-center'>
-                                <div className='col-xl-5 col-lg-5 col-md-5 col-5'>Total Sales</div>
+                                <div className='col-xl-5 col-lg-5 col-md-5 col-5'>Maglumatlar</div>
                                 <div className='col-xl-5 col-lg-5 col-md-5 col-5'>
                                     <select className={`form-select form-select-sm select-month me-2 ${darkMode ? "bg-dark-blue-footer text-white" : null}`}>
                                         <option value="0">January</option>
@@ -256,7 +216,7 @@ const Admin = () => {
                 <div className='col-xl-7 col-lg-7 col-md-12 col-12 mb-3'>
                     <div className={`card border-0 shadow p-4 ${darkMode ? "bg-dark-blue text-white" : null}`}>
                         <div className='card-title mt-2'>
-                            Using Storage <b>1775.06 MB</b> of 2 GB
+                            Web Sahypanyň tutýan meýdany <b>1775.06 MB</b>-dan 2 GB
                         </div>
                         <div className="progress my-3">
                             <div className="progress-bar" role="progressbar" aria-label="Segment one" style={{ width: "40%" }} aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
@@ -264,10 +224,10 @@ const Admin = () => {
                             <div className="progress-bar bg-success" role="progressbar" aria-label="Segment three" style={{ width: "10%" }} aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <div className="row g-0 " style={{ fontWeight: "500" }}>
-                            <div className="col-auto d-flex align-items-center pe-3"><span className="dot bg-primary"></span><span>Regular</span></div>
-                            <div className="col-auto d-flex align-items-center pe-3"><span className="dot bg-info"></span><span>System</span></div>
-                            <div className="col-auto d-flex align-items-center pe-3"><span className="dot bg-success"></span><span>Shared</span></div>
-                            <div className="col-auto d-flex align-items-center"><span className="dot bg-200"></span><span>Free</span></div>
+                            <div className="col-auto d-flex align-items-center pe-3"><span className="dot bg-primary"></span><span>Maglumatlar</span></div>
+                            <div className="col-auto d-flex align-items-center pe-3"><span className="dot bg-info"></span><span>Teswirler</span></div>
+                            <div className="col-auto d-flex align-items-center pe-3"><span className="dot bg-success"></span><span>Suratlar</span></div>
+                            <div className="col-auto d-flex align-items-center"><span className="dot bg-200"></span><span>Boş</span></div>
                         </div>
                     </div>
                 </div>

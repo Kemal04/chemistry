@@ -19,8 +19,7 @@ import './App.css'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { ThemeContext } from './context/ThemeContext';
-import { Admin, AdminBlogCreate, AdminLogin, AdminUsers } from './pages/admin';
-import { AdminBlogs } from './pages/admin';
+import { Admin, AdminBlogCreate, AdminBlogEdit, AdminLogin, AdminUsers, AdminBlogs, AdminContact } from './pages/admin';
 
 const App = () => {
 
@@ -57,10 +56,11 @@ const App = () => {
                 <Route path='/' element={<AdminLayout darkMode={darkMode} />} >
                     <Route path='/admin' element={<Admin />} />
 
-                    <Route path='/admin/ulanyjylar' element={<AdminUsers />} />
+                    <Route path='/admin/teswirler' element={<AdminContact />} />
 
                     <Route path='/admin/maglumatlar' element={<AdminBlogs />} />
                     <Route path='/admin/maglumat-gos' element={<AdminBlogCreate />} />
+                    <Route path='/admin/maglumat-uytget/:blogId' element={<AdminBlogEdit />} />
                 </Route>
 
                 <Route path='/' element={<LoginRoute><Auth /></LoginRoute>} >

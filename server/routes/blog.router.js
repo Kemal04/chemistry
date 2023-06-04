@@ -9,7 +9,7 @@ const fs = require('fs')
 //superADMIN start
 router.get("/", async (req, res) => {
     const page = req.query.page ? parseInt(req.query.page) : 1;
-    const limit = 5;
+    const limit = 50;
     const offset = (page - 1) * limit;
     var before = offset > 0 ? page - 1 : 1;
     var next = page + 1;
