@@ -72,6 +72,13 @@ const AdminBlogCreate = () => {
                                     <input name='title' onChange={handleChange} type="text" className="form-control rounded-0" autoComplete="off" />
                                 </div>
 
+                                <div className="col-lg-12 mb-3">
+                                    <label className="form-label fw-bold">Suraty</label>
+                                    <div className="input-group mb-3">
+                                        <input name='blog_img' onChange={(e) => setImg(e.target.files[0])} type="file" className="form-control rounded-0" autoComplete="off" />
+                                    </div>
+                                </div>
+                                
                                 <div className="col-xl-12 col-lg-12 col-md-12 col-12 mb-5">
                                     <label className="form-label fw-bold">Mazmuny</label>
                                     <CKEditor
@@ -86,12 +93,6 @@ const AdminBlogCreate = () => {
                                     />
                                 </div>
 
-                                <div className="col-lg-12 mb-3">
-                                    <label className="form-label fw-bold">Suraty</label>
-                                    <div className="input-group mb-3">
-                                        <input name='blog_img' onChange={(e) => setImg(e.target.files[0])} type="file" className="form-control rounded-0" autoComplete="off" />
-                                    </div>
-                                </div>
 
                                 <div className='d-grid mt-3'>
                                     <button type="submit" className={`btn ${darkMode ? "btn-outline-light" : "btn-primary"}`}>Goşmak</button>

@@ -41,8 +41,8 @@ const AdminContact = () => {
 
     return (
         <>
-        
-        <div className='card border-0 shadow my-5'>
+
+            <div className='card border-0 shadow my-5'>
                 <div className={`card-header p-3 ${darkMode ? "bg-dark-blue-footer text-white" : null}`}>
                     <div className='row align-items-center'>
                         <div className='col-xl-6 col-lg-6 col-md-6 col-12'>
@@ -62,7 +62,7 @@ const AdminContact = () => {
                         </div>
                     </div>
                 </div>
-                <div className={`card-body p-3 ${darkMode ? "bg-dark-blue text-white" : ""}`}>
+                <div className={`card-body p-3 ${darkMode ? "bg-dark-blue text-white" : ""}`} style={{ height: "711px" }}>
                     <div className='row justify-content-between aling-items-center'>
                         <table className='table table-bordered'>
                             <thead>

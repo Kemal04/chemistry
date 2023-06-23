@@ -17,11 +17,14 @@ const AuthRouter = require("./routes/auth.router")
 const UserRouter = require("./routes/user.router")
 const ContactRouter = require("./routes/contact.router")
 const BlogRouter = require("./routes/blog.router")
+const TestRouter = require("./routes/test.router")
 
 app.use("/api/auth", AuthRouter);
 app.use("/api/user", UserRouter);
 app.use("/api/contact", ContactRouter);
 app.use("/api/blog", BlogRouter);
+//FOR A TEST
+app.use("/api/test", TestRouter);
 
 //serv
 app.listen(port, () => {

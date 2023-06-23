@@ -25,7 +25,9 @@ const BlogRead = () => {
                 <div className='row justify-content-center'>
                     <div className='col-xl-10'>
                         <div className='card border-0 rounded-0' style={{ backgroundColor: "transparent", boxShadow: "none" }}>
-                            <img src={`${Api_Address}/img/blog/${blog.blog_img}`} alt="" className='img-fluid' />
+                            <div className='d-flex justify-content-center'>
+                                <img src={`${Api_Address}/img/blog/${blog.blog_img}`} alt="" className='img-fluid' style={{ width: "500px" }} />
+                            </div>
                             <div className='card-body'>
                                 <div className='row justify-content-between align-items-center'>
                                     <div className='col-xl-10'>

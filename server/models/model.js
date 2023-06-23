@@ -37,6 +37,16 @@ const Contact = sequelize.define("contact", {
     comment: { type: DataTypes.TEXT, allowNull: false }
 });
 
+const Test = sequelize.define("test", {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: true
+    },
+    name: { type: DataTypes.STRING, allowNull: false },
+});
+
 const Blog = sequelize.define("blog", {
     id: {
         type: DataTypes.INTEGER,
@@ -56,4 +66,5 @@ module.exports = {
     Admin,
     Contact,
     Blog,
+    Test,
 };

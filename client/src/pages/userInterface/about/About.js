@@ -59,9 +59,9 @@ const About = () => {
                             </div>
                             <div className="card-body">
                                 <div className='d-flex justify-content-between align-items-center'>
-                                    <h5>Berdimuhamet Annaýew</h5>
+                                    <h5>Ýurdumyzyň ministrlikleri, pudaklaýyn edaralary...</h5>
                                 </div>
-                                <p>1904-nji ýylda Gökdepe etrabynyň Yzgant obasynda doguldy. Mugallym, edermen esger, ilhalar ynsan. Mähriban Arkadagymy...</p>
+                                <p>Ýurdumyzyň ministrlikleri, pudaklaýyn edaralary, eýeçiliginiň görnüşine gara-mazdan, edaralar, kärhanalar, guramalar hem-de hususy telekeçiler özleriniň ýöri-te web-saýtlaryny döredip, maglumat toruna işjeň goşulýarlar.</p>
                             </div>
                         </Link>
                     </div>
@@ -72,9 +72,9 @@ const About = () => {
                             </div>
                             <div className="card-body">
                                 <div className='d-flex justify-content-between align-items-center'>
-                                    <h5>Berdimuhamet Annaýew</h5>
+                                    <h5>Ýurdumyzyň ministrlikleri, pudaklaýyn edaralary...</h5>
                                 </div>
-                                <p>1904-nji ýylda Gökdepe etrabynyň Yzgant obasynda doguldy. Mugallym, edermen esger, ilhalar ynsan. Mähriban Arkadagymy...</p>
+                                <p>Ýurdumyzyň ministrlikleri, pudaklaýyn edaralary, eýeçiliginiň görnüşine gara-mazdan, edaralar, kärhanalar, guramalar hem-de hususy telekeçiler özleriniň ýöri-te web-saýtlaryny döredip, maglumat toruna işjeň goşulýarlar.</p>
                             </div>
                         </Link>
                     </div>
@@ -85,9 +85,9 @@ const About = () => {
                             </div>
                             <div className="card-body">
                                 <div className='d-flex justify-content-between align-items-center'>
-                                    <h5>Berdimuhamet Annaýew</h5>
+                                    <h5>Ýurdumyzyň ministrlikleri, pudaklaýyn edaralary...</h5>
                                 </div>
-                                <p>1904-nji ýylda Gökdepe etrabynyň Yzgant obasynda doguldy. Mugallym, edermen esger, ilhalar ynsan. Mähriban Arkadagymy...</p>
+                                <p>Ýurdumyzyň ministrlikleri, pudaklaýyn edaralary, eýeçiliginiň görnüşine gara-mazdan, edaralar, kärhanalar, guramalar hem-de hususy telekeçiler özleriniň ýöri-te web-saýtlaryny döredip, maglumat toruna işjeň goşulýarlar.</p>
                             </div>
                         </Link>
                     </div>

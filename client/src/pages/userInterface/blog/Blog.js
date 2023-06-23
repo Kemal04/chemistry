@@ -54,10 +54,11 @@ const Blog = () => {
                                 <div className='card shadow'>
                                     <div className='row'>
                                         <div className='col-xl-5'>
-                                            <img src={`${Api_Address}/img/blog/${blog.blog_img}`} alt="" className='img-fluid' />
+                                            <img src={`${Api_Address}/img/blog/${blog.blog_img}`} alt="" className='img-fluid' style={{ height: "300px" }} />
                                         </div>
                                         <div className='col-xl-7 p-5'>
-                                            <div className='h4'>{blog.title}</div>
+                                            <div className='h5'>{blog.title}</div>
+                                            <p className='my-3' dangerouslySetInnerHTML={{ __html: blog.description.substring(0, 70) + "..." }}></p>
                                         </div>
                                     </div>
                                 </div>
